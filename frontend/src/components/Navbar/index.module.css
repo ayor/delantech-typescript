@@ -1,0 +1,79 @@
+.Active {
+  color: #46b5f3;
+}
+.Cart {
+  position: absolute;
+  top: 17px;
+  z-index: 1px;
+  color: #f37d46 !important;
+  font-size: 12px;
+  font-weight: bold;
+  right: 6px;
+}
+.Links {
+  transition: all;
+}
+.LinksRemoved {
+  opacity: 0;
+  transition: all;
+}
+
+.Cart:active {
+  color: #46b5f3;
+}
+.NavBar {
+  background-color: #202020;
+  padding: 20px;
+  color: #f2f2f2 !important;
+  animation: showBkg 1s ease;
+  transition: all;
+}
+.NavBar > a,
+.NavBar > div > ul > li > a {
+  color: #f2f2f2 !important;
+}
+
+.PageNav {
+  border-left: 3px solid #46b5f3;
+  color: #7f8081;
+  padding-left: 10px;
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.Menu:hover {
+  cursor: pointer;
+}
+
+@keyframes showBkg {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes showBkg-reverse {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@media (min-width: 576px) {
+  .Menu {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  .Cart {
+    top: 93px;
+  }
+}

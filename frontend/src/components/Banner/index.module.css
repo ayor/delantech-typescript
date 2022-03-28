@@ -1,0 +1,64 @@
+
+.BannerText{
+    padding: 10px;
+}
+.BannerText > small{
+font-family: Poppins;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 30px;
+letter-spacing: 0.1em;
+color: #E5E5E5;
+
+
+}
+
+.BannerSVG {
+    width:273px;
+    height:15px;
+    margin-top: -10px;
+    margin-left: 150px;
+
+}
+
+.BannerBtn{
+    align-self: center;
+    margin-top: 5px;
+    font-weight: 400;
+    font-size: 18px;
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+
+
+/* responsive constraints */
+
+
+
+  @media screen and (max-width: 768px) {
+    .BannerSVG {
+        margin-top: -7px;
+        margin-left: 135px;
+    
+    }
+    .BannerText > h1, .BannerText > small {
+        margin: 0 auto;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .BannerText {
+        text-align: center;
+    }
+    
+  }
+  @media screen and (max-width: 420px) {
+    .BannerSVG {
+      width:200px;
+        margin-top: -10px;
+        margin-left: 100px;
+    
+    }
+  }
