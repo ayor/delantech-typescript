@@ -23,9 +23,22 @@ let ProductController = class ProductController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const products = yield Product_1.Product.getAll();
-                console.log(products);
                 res.status(200).json({
                     products
+                });
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+    }
+    getProduct(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = req.params;
+                const product = yield Product_1.Product.getById(id);
+                res.status(200).json({
+                    product
                 });
             }
             catch (error) {
@@ -37,6 +50,9 @@ let ProductController = class ProductController {
 __decorate([
     (0, decorators_1.get)('/products')
 ], ProductController.prototype, "getAll", null);
+__decorate([
+    (0, decorators_1.get)('/product/:id')
+], ProductController.prototype, "getProduct", null);
 ProductController = __decorate([
     (0, decorators_1.controller)()
 ], ProductController);

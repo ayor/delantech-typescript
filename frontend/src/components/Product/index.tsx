@@ -6,9 +6,10 @@ import { Button } from '../Button';
 interface ProductProp {
   images: string[];
   name: string;
+  type: 'lock' | 'switch';
   price: number;
   id: string;
-
+  handleButtonClickEvent: React.MouseEventHandler;
 }
 
 export const Product = (props: ProductProp): JSX.Element => {
@@ -16,7 +17,7 @@ export const Product = (props: ProductProp): JSX.Element => {
   const price = convert(props.price)
   return (
     <div className="col col-md-6 col-lg-3 mb-4 text-center" >
-      <Link to={'/products/' + props.id}  >
+      <Link replace to={`/product/${props.type}/${props.name}/${props.id}`}  >
         <img
           className="img-fluid rounded"
           src={props.images[0]}
@@ -34,7 +35,7 @@ export const Product = (props: ProductProp): JSX.Element => {
       </small>
       <Button
         title='Add To Cart'
-        clickEvent={() => console.log('clicked')}
+        clickEvent={props.handleButtonClickEvent}
       />
     </div>
   )

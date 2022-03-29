@@ -8,9 +8,20 @@ export class ProductController {
     async getAll(req: Request, res: Response, next: NextFunction) {
         try {
             const products = await Product.getAll();
-            console.log(products)
             res.status(200).json({
                 products
+            })
+        } catch (error) {
+            next(error);
+        }
+    }
+    @get('/product/:id')
+    async getProduct(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { id } = req.params;
+            const product = await Product.getById(id);
+            res.status(200).json({
+                product
             })
         } catch (error) {
             next(error);

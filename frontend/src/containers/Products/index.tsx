@@ -4,18 +4,9 @@ import { Colors } from '../../theme/colors'
 import { Underline } from '../../components/Underline';
 import { _axios } from '../../utils/axiosInstance'
 import { Banner } from '../../components/Banner';
-import { AxiosError, AxiosResponse } from 'axios';
 import { Product } from '../../components/Product';
+import { IProduct } from "../../interfaces";
 
-interface IProduct {
-    id: string;
-    images: string[];
-    price: number;
-    description: string;
-    name: string;
-    type: "lock" | "switch";
-    youtubeUrl: string;
-}
 interface ProductSchema {
     lock: IProduct[];
     switches: IProduct[]
@@ -26,15 +17,6 @@ export const Products = (): JSX.Element => {
     const getProducts = useCallback(async () => {
         try {
             const { data } = await _axios.get('/products');
-            // data.products.reduce((prev: ProductSchema, cur: ProductStructure) => {
-            //     if (cur.type in prev) {
-            //         prev[cur.type].push(cur);
-            //     } else {
-            //         prev[cur.type] = [cur];
-            //     }
-            //     return cur;
-            // }, {});
-
             const locks: IProduct[] = data.products.filter((product: IProduct) => product.type === 'lock');
             const switches: IProduct[] = data.products.filter((product: IProduct) => product.type === 'switch')
             setProducts({
@@ -54,6 +36,10 @@ export const Products = (): JSX.Element => {
         getProducts();
     }, [])
 
+    const handleProductClick = (id: string): void => {
+        console.log(id);
+    }
+
     return (
         <section className="container my-5">
             <PageTag tagName="our products" />
@@ -67,8 +53,12 @@ export const Products = (): JSX.Element => {
                 <div className="row mt-2 justify-content-center">
 
                     {products.lock.map((product: IProduct) => (
-                        <Product key={product.id} name={product.name} id={product.id}
-                            images={product.images} price={product.price} />))}
+                        <Product
+                            key={product.id} name={product.name}
+                            id={product.id} type={product.type}
+                            images={product.images}
+                            price={product.price}
+                            handleButtonClickEvent={handleProductClick.bind(this, product.id)} />))}
                 </div>
 
                 <Banner hasHeader header="Iotty Smart Switches" subText="Voice activated light switch" backgroundImage='url(/img/E2.png)'
@@ -76,7 +66,9 @@ export const Products = (): JSX.Element => {
                 <div className="row mt-2 justify-content-center">
 
                     {products.switches.map((product: IProduct) => (
-                        <Product name={product.name} key={product.id} id={product.id}
+                        <Product
+                            name={product.name} key={product.id} type={product.type}
+                            id={product.id} handleButtonClickEvent={handleProductClick.bind(this, product.id)}
                             images={product.images} price={product.price} />))}
                 </div>
 
