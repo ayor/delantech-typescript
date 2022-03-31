@@ -3,9 +3,10 @@ import classNames from 'classnames';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import styles from './index.module.css';
 import logo from '../../img/Delantech.png';
-
+import { store } from "../../store";
+import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Hamburger } from './Hamburger';
+import { IState } from '../../interfaces';
 interface NavLink {
   title: string;
   route: string;
@@ -24,10 +25,15 @@ const navlists: NavLink[] = [
     title: 'Team',
     route: '/team',
   },
+
 ];
 
 
 export const AppNavbar = (): JSX.Element => {
+
+  const cart = useSelector<IState, IState>(state => state);
+
+
   const links = navlists.map((link: NavLink, index: number): JSX.Element => {
     return (
       <Nav.Link key={index}>
@@ -53,40 +59,21 @@ export const AppNavbar = (): JSX.Element => {
         {/* as={Hamburger}*/}
         <Navbar.Toggle aria-controls="delan-nav-bar" />
         <Navbar.Collapse id="delan-nav-bar">
-          <Nav className="me-auto">{links}</Nav>
+          <Nav className="me-auto">
+            {links}
+          </Nav>
+          <Nav>
+            <Nav.Link >
+              <Link className="nav-link mr-2" to="/cart">
+                <i className="fa fa-shopping-cart " aria-hidden="true">
+                  <span className="delan-cart-val">{cart.items?.length || 0}</span>
+                </i>
+              </Link>
+            </Nav.Link>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-  // return (
-  // <div className="container">
-  //     <nav
-  //       className={`navbar navbar-expand-sm navbar-light fixed-top p-3 ${classNames(styles.NavBar)}`
-  //       }
-  //     >
 
-  //       {/* <MenuBar clicked={() => setToggleState(!toggleBar)} /> */}
-  //       {/* {toggleBar ? ( */}
-  //         <div
-  //           className={
-  //             'collapse navbar-collapse d-flex justify-content-between ' +
-  //              classNames(styles.Links)
-  //           }
-  //           id="navbarSupportedContent"
-  //         >
-  //           <ul className="navbar-nav mr-auto ">
-  //             {links}
-  //          </ul>
-  //           <div>
-  //               <Link className="text-light" to="/carts">
-  //                 <i className="fas fa-shopping-cart "></i>
-  //                 <span className={' mx-2 '}>
-  //                 </span>
-  //               </Link>
-  //           </div>
-  //         </div>
-  //       {/* ) : null} */}
-  //     </nav>
-  //   </div>
-  // )
 };

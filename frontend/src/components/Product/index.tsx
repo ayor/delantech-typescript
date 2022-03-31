@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { convert } from '../../utils/convertToNGN';
+import { convert } from '../../utils/util';
 import { Button } from '../Button';
 
 interface ProductProp {

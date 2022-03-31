@@ -6,6 +6,8 @@ import { _axios } from '../../utils/axiosInstance'
 import { Banner } from '../../components/Banner';
 import { Product } from '../../components/Product';
 import { IProduct } from "../../interfaces";
+import { addToCart } from "../../store/features/cartSlice";
+import { useDispatch } from "react-redux";
 
 interface ProductSchema {
     lock: IProduct[];
@@ -13,6 +15,8 @@ interface ProductSchema {
 }
 
 export const Products = (): JSX.Element => {
+
+    const dispatch = useDispatch();
 
     const getProducts = useCallback(async () => {
         try {
@@ -36,8 +40,8 @@ export const Products = (): JSX.Element => {
         getProducts();
     }, [])
 
-    const handleProductClick = (id: string): void => {
-        console.log(id);
+    const handleProductClick = (product: IProduct): void => {
+        dispatch(addToCart(product))
     }
 
     return (
@@ -58,7 +62,7 @@ export const Products = (): JSX.Element => {
                             id={product.id} type={product.type}
                             images={product.images}
                             price={product.price}
-                            handleButtonClickEvent={handleProductClick.bind(this, product.id)} />))}
+                            handleButtonClickEvent={handleProductClick.bind(this, product)} />))}
                 </div>
 
                 <Banner hasHeader header="Iotty Smart Switches" subText="Voice activated light switch" backgroundImage='url(/img/E2.png)'
@@ -68,7 +72,7 @@ export const Products = (): JSX.Element => {
                     {products.switches.map((product: IProduct) => (
                         <Product
                             name={product.name} key={product.id} type={product.type}
-                            id={product.id} handleButtonClickEvent={handleProductClick.bind(this, product.id)}
+                            id={product.id} handleButtonClickEvent={handleProductClick.bind(this, product)}
                             images={product.images} price={product.price} />))}
                 </div>
 

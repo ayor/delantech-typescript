@@ -27,8 +27,21 @@
 .App-link {
   color: #61dafb;
 }
-.css-ohwg9z{
-  height:100%
+.css-ohwg9z {
+  height: 100%;
+}
+
+.delan-cart-val {
+  position: absolute;
+  top: 15px;
+  padding: 2.7px 4px;
+  width: 15px;
+  font-size: 9px;
+  color: black;
+  font-weight: 800;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #46b5f3;
 }
 
 @keyframes App-logo-spin {

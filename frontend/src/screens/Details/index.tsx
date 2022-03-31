@@ -4,11 +4,12 @@ import ReactCarousel from 'react-material-ui-carousel';
 import { Product } from "../../components/Product";
 import { IFeature, IFeatures, IProduct } from "../../interfaces";
 import { _axios } from '../../utils/axiosInstance';
-import { convert } from "../../utils/convertToNGN";
+import { convert } from "../../utils/util";
 import { useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { isNullishCoalesce } from 'typescript';
 import { motion, AnimatePresence } from 'framer-motion';
+import { addToCart } from '../../store/features/cartSlice';
 
 interface ImageProps {
     images: string[]
@@ -97,7 +98,11 @@ export const Detail = () => {
     const [similarProducts, setSimilarProducts] = useState<IProduct[]>();
 
     const [isPhoneWidth, setPhoneWidth] = useState(false);
-    // const dipatch = useDispatch();
+    const dipatch = useDispatch();
+
+    const handleProductClick = (product: IProduct) => {
+        dipatch(addToCart(product));
+    }
 
     useEffect(() => {
         if (window.screen['width'] <= 565) {
@@ -137,12 +142,7 @@ export const Detail = () => {
                             alignItems: 'flex-end',
                         }}
                     >
-                        {/* <Chip
-                  label="Watch Demo"
-                  onClick={handleOpen}
-                  variant="contained"
-                  icon={<PlayCircleFilledOutlinedIcon />}
-                /> */}
+
                     </div>
                 </div>
             ))}
@@ -257,7 +257,7 @@ export const Detail = () => {
                                 name={item.name}
                                 id={item.id}
                                 type={item.type}
-                                handleButtonClickEvent={() => { }}
+                                handleButtonClickEvent={handleProductClick.bind(this, item)}
                                 images={item.images}
                                 price={item.price}
                             />

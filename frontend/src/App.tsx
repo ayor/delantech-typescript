@@ -1,6 +1,7 @@
 import React from 'react';
 import { Home } from './screens/Home';
-import { Detail } from './screens/Details'
+import { Detail } from './screens/Details';
+import { Carts } from './screens/Carts';
 import {
   BrowserRouter as Router,
   Route,
@@ -24,6 +25,7 @@ function App() {
           <AppNavbar />
           <Routes>
             <Route path="/product/:type/:name/:id" element={<Detail />} />
+            <Route path="/cart" element={<Carts />} />
             <Route path="/" element={<Home />} />
           </Routes>
           <Footer />
