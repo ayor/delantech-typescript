@@ -1,0 +1,27 @@
+.bg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.SmartHome {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+    url('/public/img/unsplash_ALpEkP29Eys.png');
+}
+.AccessControl {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+    url('/public/img/Rectangle 34.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.Cinema {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+    url('/public/img/image 1.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.Offices {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+    url('/public/img/unsplash_ALpEkP29Eys-1.png');
+}

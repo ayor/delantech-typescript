@@ -14,7 +14,7 @@ interface ProductSchema {
     switches: IProduct[]
 }
 
-export const Products = (): JSX.Element => {
+export const Products = () => {
 
     const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ export const Products = (): JSX.Element => {
                 switches
             });
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
 
     }, []);
@@ -45,36 +45,9 @@ export const Products = (): JSX.Element => {
     }
 
     return (
-        <section className="container my-5">
-            <PageTag tagName="our products" />
-            <div >
-                <div className="mt-3 text-center" >
-                    <h3 className=""> Simple IOT devices to make your houses smarter </h3>
-                    <Underline />
-                </div>
-                <Banner backgroundImage='url(/img/mortise2.jpeg)'
-                    bkgColor={Colors.delanDarkGray} />
-                <div className="row mt-2 justify-content-center">
+        <section className="my-5">
+            <div>
 
-                    {products.lock.map((product: IProduct) => (
-                        <Product
-                            key={product.id} name={product.name}
-                            id={product.id} type={product.type}
-                            images={product.images}
-                            price={product.price}
-                            handleButtonClickEvent={handleProductClick.bind(this, product)} />))}
-                </div>
-
-                <Banner hasHeader header="Iotty Smart Switches" subText="Voice activated light switch" backgroundImage='url(/img/E2.png)'
-                    bkgColor={'#9A9EA0'} />
-                <div className="row mt-2 justify-content-center">
-
-                    {products.switches.map((product: IProduct) => (
-                        <Product
-                            name={product.name} key={product.id} type={product.type}
-                            id={product.id} handleButtonClickEvent={handleProductClick.bind(this, product)}
-                            images={product.images} price={product.price} />))}
-                </div>
 
             </div>
         </section>
